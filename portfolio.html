@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Portfolio</title>
+  <!--
+Next Level CSS Template
+https://templatemo.com/tm-532-next-level
+-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
+  <link rel="stylesheet" href="css/all.min.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/templatemo-style.css" />
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="row tm-brand-row">
+      <div class="col-lg-4 col-10">
+        <div class="tm-brand-container">
+          <div class="tm-brand-texts">
+            <h1 class="text-uppercase tm-brand-name">Cara Karter</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-2 tm-nav-col">
+        <div class="tm-nav">
+          <nav class="navbar navbar-expand-lg navbar-light tm-navbar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto mr-0">
+                <li class="nav-item active">
+                  <div class="tm-nav-link-highlight"></div>
+                  <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <div class="tm-nav-link-highlight"></div>
+                  <a class="nav-link" href="portfolio.html">Portfolio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <div class="tm-nav-link-highlight"></div>
+                  <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <div class="tm-nav-link-highlight"></div>
+                  <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+
+    <section class="row tm-pt-4 tm-pb-6">
+      <div class="col-12 tm-tabs-container tm-page-cols-container">
+        <div class="tm-page-col-left tm-tab-links">
+          <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+            <li>
+              <a href="#tab1" class="active">
+                <div class="tm-tab-icon"></div>
+                Tableau API with R
+              </a>
+            </li>
+            <li>
+              <a href="#tab2" class="">
+                <div class="tm-tab-icon"></div>
+                Power BI
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Section 1 -->
+
+        <div class="tm-page-col-right tm-tab-contents">
+          <div id="first-tab-group" class="tabgroup">
+            <div id="tab1">
+              <div class="text-content">
+                <h3 class="tm-text-secondary tm-mb-5">
+                  Tableau API with R
+                </h3>
+                <p class="tm-mb-5">
+                <h5 class="tm-text-secondary"><strong>Automating Exports from Tableau using R and the Tableau API
+                  </strong></h5>
+                </p>
+                <p class="tm-mb-5">
+                  This document outlines the procedure that an active, approved user of a Tableau application can use to
+                  automate the export of workbook data from Tableau using methods available through the existing Tableau
+                  API. The API allows users to access the same information that they have permissions to access through
+                  the Tableau user interface. This makes it possible to streamline the export of data without needing to
+                  log in and navigate to the Tableau site each time, but it does not provide any additional data access
+                  not already available to a user.
+                  <br />
+                  <br />
+                  <strong>Step 1: Set Up your Tableau Account for API access</strong>
+                  <br />
+                  <br />
+                  The first step in using the Tableau API to interact with a Tableau site is to generate a Personal
+                  Access Token.
+                  <br />
+                  <br />
+                  1. Navigate to and login to Tableau.
+                  <br />
+                  2. Once logged into the Tableau site, click on your initials icon in the upper right corner and then
+                  on "My Account Settings" in the drop-down menu.
+                  <br />
+                  3. On the main Account Settings menu, scroll down to the last sub-section under Security, labelled
+                  "Personal Access Tokens".
+                  <br />
+                  4. Type a Token Name in the text box and click "Create new token". This will generate a Token Name and
+                  Token Secret for you.
+                  <br />
+                  5. Save your Token Name and Token Secret in a secure location similar to how you would treat your
+                  login information or other credentials. You will not be able to access your Token Secret after you
+                  close the pop-up window.
+                  <br />
+                </p>
+                <p>
+                  <img src="img/portfolio-tableauapi-img1.jpg" alt="Account Settings" class="img-fluid tm-mb-1" />
+                </p>
+                <p class="tm-mb-5">
+                  You will need this token to interact with the Tableau site through the API.
+                  Personal Access Tokens expire (By default, after 15 days of inactivity or after 1 year if used more
+                  frequently. They can also be revoked by the system admin), so you will periodically need to regenerate
+                  this by logging back in and repeating these steps.
+                  <br />
+                  <br />
+                  <strong>Step 2: Create a script in R (or another scripting language) to interact with the Tableau
+                    API</strong>
+                  <br />
+                  <br />
+                  After obtaining a Personal Access Token through your Tableau account, you can begin writing your
+                  script to make Tableau API calls. The remainder of these steps will include examples using R scripts,
+                  but other languages are supported by the Tableau API. Reference the documentation for further
+                  information.
+                  <br />
+                  <br />
+                  Your script will require you to pipe in your Personal Access Token. If you collaborate on scripts or
+                  save a script in a shared directory you should not include your token directly in the script, remember
+                  this information should be treated like any other secure credential. To secure my token, I added it to
+                  a separate R file (‘Secrets.R’), saved only on my local computer and included in my gitignore file.
+                  For convenience, in my Secrets file I saved the entire body for the initial sign in API call rather
+                  than just the token name and secret (the entire code snippet, below). Your initial request body should
+                  look similar to the below, with the TOKENNAME and TOKENSECRET replaced with your token information.
+                  You will also need to include the site contentURL here. Usually a Tableau site url looks like this:
+                  "https://prod-useast-b.online.tableau.com/#/site/<span
+                    style="background-color: yellow;">themonstermash</span>/" with the <span
+                    style="background-color: yellow;">highlighted portion</span> being the site contentURL.
+                  <br />
+                  <code
+                    style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                    json_body <- '
+                    {
+                      "credentials": {
+                        "personalAccessTokenName": "<span style="background-color: yellow;">TOKENNAME</span>",
+                        "personalAccessTokenSecret": "<span style="background-color: yellow;">TOKENSECRET</span>",
+                        "site": {
+                          "contentUrl": "<span style="background-color: yellow;">themonstermash</span>"
+                        }
+                      }
+                    }'
+                  </code>
+                <p class="tm-mb-5">
+                  Other than that information in my Secrets file, the rest of the procedure for pulling down data
+                  from the API is included in the example R file provided at the end of this post. I’ll walk through
+                  it in sections now.
+                </p>
+
+                <p class="tm-mb-5">Install and Load required R packages:</p>
+
+                <code
+                  style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                    ## Install required packages 
+                    # install.packages("httr")
+                    # install.packages("jsonlite")
+                    # install.packages("readr")
+                    # install.packages("openxlsx") 
+                    
+                    ## Load required packages
+                    library(httr)
+                    library(jsonlite)
+                    library(readr)
+                    # library(openxlsx) 
+                    </code>
+
+                <p class="tm-mb-5">
+                  Load your secrets file as a source for the sign in call. As mentioned above, you should not directly
+                  include your Personal Access Token credentials in the script if you are sharing it, so you’ll need to
+                  load in those variables (or the entire body of the call if you are following me exactly). You can do
+                  this by feeding your secrets file path to the source() function.
+                </p>
+
+                <code
+                  style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                    # Load in the file where you saved your PAT info from Tableau
+                    source("C:\\Users\\karterc\\Documents\\R\\Secrets.R")
+                    </code>
+
+                <p class="tm-mb-5">
+                  Make the sign in call. Now you need to sign into the Tableau Server using your API token. This call
+                  will supply a response that you will need to parse in the next step.
+                </p>
+
+                <code
+                  style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                  ## Sign in to access the API using your generated Personal Access Token
+                    url &lt;- "https://prod-useast-b.online.tableau.com/api/3.19/auth/signin"
+                    requestbody &lt;- json_body # This is from the Secrets file
+                    response &lt;- httr::POST(url, body = requestbody, content_type_json(), accept_json())
+                    response_content &lt;- content(response, "parsed")
+                    </code>
+
+                <p class="tm-mb-5">Obtain your temporary token and the site_id value from the sign in response content.
+                  Parse the sign in response content and save the token and site_id into new variables that you will use
+                  in subsequent API calls. Just like your Personal Access Token, this token aligns with your existing
+                  user permissions on Tableau. If you cannot access something through the online user interface, you
+                  will not be able to access it through the API.</p>
+
+                <code
+                  style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                  ## Extract the token for future API calls (e.g. X-Tableau-Auth: TOKEN)
+                  token <- response_content$credentials$token
+                  
+                  ## Extract the site id for future API calls
+                  site_id <- response_content$credentials$site$id
+                    </code>
+
+                <p class="tm-mb-5">Use the Query Views method to obtain a list of site views that you can interact with
+                  through the API. The <a
+                    href="https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_views_for_site">Tableau
+                    API Query Views method</a> returns all the views that you have read permission to access. </p>
+
+                <code
+                  style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                  ## Get a list of all your views to find the one of interest from /api/api-version/sites/site-id/views 
+                  getViewUrl <- paste('https://prod-useast-b.online.tableau.com/api/3.19/sites/',site_id,'/views', sep = "", collapse = NULL)
+                  getViewRes <- httr::GET(getViewUrl, body = '', content_type_json(), accept_json(), add_headers('X-Tableau-Auth' = token))
+                  view_content <- jsonlite::fromJSON(content(getViewRes, "text"), simplifyVector = TRUE)
+                  view_df <- data.frame(view_content) # Convert to a data frame
+                    </code>
+
+                <p class="tm-mb-5">Get the view id for the desired view to use in subsequent API call. Filter the
+                  dataframe for the desired record (Scare Report) then extract the view id and save it to a new
+                  variable.</p>
+
+                <code
+                  style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                  ## Get the id associated with the view name "Scare Report"
+                  desired_row <- subset(view_df, view_df$views.view.name == "Scare Report") # Modify this if you want a different view record
+                  view_id <- desired_row$views.view.id # save the view id for use in the next API call
+                    </code>
+
+                <p class="tm-mb-5">Use the Query View Data Method to extract the view data. The <a
+                    href="https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api_ref_workbooks_and_views.htm#query_view_data">Tableau
+                    API Query View Data method</a> provides a csv output of the data displayed on the screen by default
+                  when you navigate to that view. You cannot download data that does not appear on screen or download
+                  custom views.</p>
+
+                <code
+                  style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                  ## Get data from the view
+                  # The url includes the siteid value and the view id value corresponding to the view desired
+                  ViewURL <-  paste('prod-useast-b.online.tableau.com/api/3.19/sites/',site_id,'/views/',
+                                                    view_id,'/data', sep = "", collapse = NULL)
+                  View <- httr::GET(ViewURL, body = '', content_type_json(), accept_json(), add_headers('X-Tableau-Auth' = token))
+                  # View(content(View)) # Preview data 
+                    </code>
+
+                <p class="tm-mb-5">Export the data. At this point you can transform the data (e.g., removing unnecessary
+                  PII) and then export it as a csv. </p>
+
+                <p class="tm-mb-5"><strong>Full script included below for reference:</strong></p>
+
+                <code
+                  style="display: block; white-space: pre; overflow-x: auto; font-size: 0.875rem; font-family: monospace;">
+                  ## Script to pull down View data from Tableau. 
+
+                  ## Install required packages 
+                  # install.packages("httr")
+                  # install.packages("jsonlite")
+                  # install.packages("readr")
+                  # install.packages("openxlsx")
+                  
+                  ## Load required packages
+                  library(httr)
+                  library(jsonlite)
+                  library(readr)
+                  library(openxlsx)
+                  
+                  ## Load in the file with your PAT info from Tableau
+                  source("C:\\Users\\karterc\\Documents\\Dev\\R\\Secrets.R")
+                  
+                  ## Sign in to access the API using your generated Personal Access Token
+                  url <- "https://prod-useast-b.online.tableau.com/api/3.19/auth/signin"
+                  requestbody <- json_body # This is from the Secrets file
+                  response <- httr::POST(url,body = requestbody, content_type_json(), accept_json())
+                  response_content <- (content(response, "parsed"))
+                  
+                  ## Extract the token for future API calls (e.g. X-Tableau-Auth: TOKEN)
+                  token <- response_content$credentials$token
+                  
+                  ## Extract the site id for future API calls
+                  site_id <- response_content$credentials$site$id
+                  
+                  ## Get a list of all your views to find the one of interest from /api/api-version/sites/site-id/views 
+                  getViewUrl <- paste('https://prod-useast-b.online.tableau.com/api/3.19/sites/',site_id,'/views', sep = "", collapse = NULL)
+                  getViewRes <- httr::GET(getViewUrl, body = '', content_type_json(), accept_json(), add_headers('X-Tableau-Auth' = token))
+                  view_content <- jsonlite::fromJSON(content(getViewRes, "text"), simplifyVector = TRUE)
+                  view_df <- data.frame(view_content) # Convert to a data frame
+                  
+                  ## Get the id associated with the view name "Scare Report"
+                  desired_row <- subset(view_df, view_df$views.view.name == "Scare Report") # Modify this if you want a different view record
+                  view_id <- desired_row$views.view.id # save the view id for use in the next API call
+                  
+                  ## Get data from the view
+                  # The url includes the siteid value and the view id value corresponding to the view desired
+                  ViewURL <-  paste('https://prod-useast-b.online.tableau.com/api/3.19/sites/',site_id,'/views/',
+                                    view_id,'/data', sep = "", collapse = NULL)
+                  View <- httr::GET(ViewURL, body = '', content_type_json(), accept_json(), add_headers('X-Tableau-Auth' = token))
+                  # View(content(View)) # Preview data
+                  
+                  ## Save the data as a csv in the desired directory
+                  
+                  ## Set today's date for the file path
+                  today <- strftime(Sys.Date(),"%m.%d.%y")
+                  
+                  ## Save the file
+                  outfile <- paste('C:\\Users\\karterc\\Monster Mash Reports\\ScareReport,'_',today,'.xlsx', sep = "", collapse = NULL)
+                  df <- content(View)
+                  write.xlsx(df, outfile)
+                    </code>
+
+
+
+              </div>
+            </div>
+
+            <!-- Section 2 -->
+
+            <div id="tab2">
+              <div class="text-content">
+                <h3 class="tm-text-secondary tm-mb-5">Power BI</h3>
+                <p class="tm-mb-5">
+                <p class="tm-mb-5">
+                <h5 class="tm-text-secondary"><strong>The Providencia Group: Sponsor Services Throughput Report
+                    Dashboard
+                  </strong></h5>
+                </p>
+                <p class="tm-mb-5">
+                  <strong>Request:</strong> Show the progress of active cases and whether they are outside of expected
+                  timelines during any step in the process.
+                  <br />
+                  <strong>Procedure:</strong> Queried Azure SQL Server to create Power BI semantic model; Create
+                  measures using DAX; Aligned step boxes and text using Power BI formatting tools; Created
+                  drill-throughs to case-level details on additional pages. Published to a DEV workspace for peer
+                  review. Integrated peer feedback. Published to a UAT workspace for user testing with primary
+                  stakeholders/requesters. Integrated user feedback. Published to PROD workspace for general consumption
+                  and announced in release notes.
+                  <br />
+                  <strong>Location:</strong> Access unavailable due to sensitivity of underlying data. The image below
+                  is the only page without PII.
+                </p>
+                <p>
+                  <img src="img/portfolio-spspbidash.jpg" alt="Account Settings" class="img-fluid tm-mb-1" />
+                </p>
+              </div>
+            </div>
+
+            <!-- Section 3 -->
+
+
+    </section>
+
+    <!-- Page footer -->
+
+    <footer class="row tm-page-footer">
+      <p class="col-12 tm-copyright-text mb-0">
+        Copyright &copy; 2025 Cara Karter
+      </p>
+    </footer>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/parallax.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script>
+    $(function () {
+      // Tabs
+      $(".tabgroup > div").hide();
+      $(".tabgroup > div:first-of-type").show();
+      $(".tabs a").click(function (e) {
+        e.preventDefault();
+        var $this = $(this),
+          tabgroup = "#" + $this.parents(".tabs").data("tabgroup"),
+          others = $this
+            .closest("li")
+            .siblings()
+            .children("a"),
+          target = $this.attr("href");
+        others.removeClass("active");
+        $this.addClass("active");
+        $(tabgroup)
+          .children("div")
+          .hide();
+        $(target).show();
+
+        // Scroll to tab content (for mobile)
+        if ($(window).width() < 992) {
+          $("html, body").animate(
+            {
+              scrollTop: $("#first-tab-group").offset().top
+            },
+            200
+          );
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
